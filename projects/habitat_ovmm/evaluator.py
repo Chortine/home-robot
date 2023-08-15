@@ -455,6 +455,13 @@ class OVMMEvaluator(PPOTrainer):
         :return: dict containing metrics tracked by environment.
         """
         if evaluation_type == EvaluationType.LOCAL.value:
+            # with open('/home/tianchu/Documents/code_qy/home-robot-new/my_scripts/habitat_config.pkl', 'wb') as f:
+            #     pickle.dump(self.config, f, protocol=pickle.HIGHEST_PROTOCOL)
+            #
+            # config_dict = OmegaConf.to_container(self.config, resolve=True)
+            # with open("/home/tianchu/Documents/code_qy/home-robot-new/my_scripts/config.json", "w") as outfile:
+            #     json.dump(config_dict, outfile, indent=2)
+
             self._env = create_ovmm_env_fn(self.config)
             return self.local_evaluate(agent, num_episodes)
         elif evaluation_type == EvaluationType.LOCAL_VECTORIZED.value:
